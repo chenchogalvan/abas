@@ -36,7 +36,8 @@
         <div id="content" class="col-sm-12">
             <h2 class="title">Registro</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+            <form action="{{ route('guardarDatos') }}" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+                @csrf
                 <fieldset id="account">
                     <legend>Información personal</legend>
                     <div class="form-group required" style="display: none;">
@@ -75,18 +76,41 @@
                     </div>
 
                 </fieldset>
+                <fieldset>
+                    <legend>Faccturación</legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-razon_social">Razon social</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="razon_social" value="" placeholder="" id="input-razon_social" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-RFC">RFC</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="RFC" value="" placeholder="RFC" id="input-RFC" class="form-control">
+                        </div>
+                    </div>
+                    <input type="hidden" name="formaPago" value="28">
+                    <input type="hidden" name="usoCFDI" value="G01">
+                </fieldset>
                 <fieldset id="address">
                     <legend>Dirección</legend>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-company">Empresa</label>
+                        <label class="col-sm-2 control-label" for="input-calle">Calle</label>
                         <div class="col-sm-10">
-                            <input type="text" name="company" value="" placeholder="Company" id="input-company" class="form-control">
+                            <input type="text" name="calle" value="" placeholder="Aventurita" id="input-calle" class="form-control">
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-address-1">Dirección</label>
+                        <label class="col-sm-2 control-label" for="input-numero">Numero ext.</label>
                         <div class="col-sm-10">
-                            <input type="text" name="address_1" value="" placeholder="Address 1" id="input-address-1" class="form-control">
+                            <input type="text" name="numero" value="" placeholder="789" id="input-numero" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-numero-int">Numero int.</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="numero_int" value="" placeholder="789" id="input-numero-int" class="form-control">
                         </div>
                     </div>
                     {{-- <div class="form-group">
@@ -96,22 +120,22 @@
                         </div>
                     </div> --}}
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-city">Ciudad</label>
+                        <label class="col-sm-2 control-label" for="input-colonia">Colonia</label>
                         <div class="col-sm-10">
-                            <input type="text" name="city" value="" placeholder="City" id="input-city" class="form-control">
+                            <input type="text" name="colonia" value="" placeholder="Melchor Ocampo" id="input-colonia" class="form-control">
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-postcode">Codigo Postal</label>
+                        <label class="col-sm-2 control-label" for="input-ciudad">cCudad</label>
                         <div class="col-sm-10">
-                            <input type="text" name="postcode" value="" placeholder="Post Code" id="input-postcode" class="form-control">
+                            <input type="text" name="ciudad" value="" placeholder="Santa Catarina" id="input-ciudad" class="form-control">
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-country">Estadp</label>
+                        <label class="col-sm-2 control-label" for="input-country">Estado</label>
                         <div class="col-sm-10">
                             <select name="country_id" id="input-country" class="form-control">
-                                <option value=""> --- Please Select --- </option>
+                                <option value=""> --- Selecciona una opción --- </option>
                                 <option value="244">Aaland Islands</option>
                                 <option value="1">Afghanistan</option>
                                 <option value="2">Albania</option>
@@ -122,19 +146,15 @@
                             </select>
                         </div>
                     </div>
-                    {{-- <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-zone">Region / State</label>
-                        <div class="col-sm-10">
-                            <select name="zone_id" id="input-zone" class="form-control">
-                                <option value=""> --- Please Select --- </option>
-                                <option value="3513">Aberdeen</option>
-                                <option value="3514">Aberdeenshire</option>
-                                <option value="3515">Anglesey</option>
-                                <option value="3516">Angus</option>
 
-                            </select>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-postcode">Codigo Postal</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="postcode" value="" placeholder="Post Code" id="input-postcode" class="form-control">
                         </div>
-                    </div> --}}
+                    </div>
+
+
                 </fieldset>
                 <fieldset>
                     <legend>Contraseña</legend>
@@ -167,8 +187,8 @@
                 </fieldset> --}}
                 <div class="buttons">
                     <div class="pull-right">Estoy de acuerdo con los  <a href="#" class="agree"><b>Terminos y condiciones</b></a>
-                        <input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
-                        <input type="submit" value="Registrarw  " class="btn btn-primary">
+                        <input class="box-checkbox" onchange="document.getElementById('btnEnviar').disabled = !this.checked;" type="checkbox" name="agree" id="terminos"> &nbsp;
+                        <input type="submit" value="Registrar" id="btnEnviar" class="btn btn-primary" disabled>
                     </div>
                 </div>
             </form>
@@ -177,3 +197,8 @@
 </div>
 <!-- //Main Container -->
 @endsection
+
+
+@push('js')
+
+@endpush

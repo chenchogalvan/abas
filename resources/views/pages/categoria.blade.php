@@ -157,11 +157,13 @@
 
                     @foreach ($c as $r)
 
+
                     <div class="product-layout col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="product-item-container item--static">
                             <div class="left-block">
                                 <div class="product-image-container second_img">
                                     <a href="/producto/{{$r->Codigo}}" target="_self" title="{{$r->Descripcion}}">
+
                                         <img src="{{ $r->Imagen }}" class="img-1 img-responsive" alt="{{$r->Descripcion}}">
                                         <img src="{{ $r->Imagen }}" class="img-2 img-responsive" alt="{{$r->Descripcion}}">
                                     </a>

@@ -24,6 +24,8 @@ Route::get('/', function () {
     $categorias = DB::select('WebCodigosClase');
     $pd = DB::select('WebCodigosDestacados');
 
+    // return $pd;
+
     // return $categorias;
     return view('pages.home', compact('oferta', 'categorias'));
 });
@@ -108,11 +110,106 @@ Route::post('/login-info', function (Request $request)
 
 Route::get('/registro', function () {
     $categorias = DB::select('WebCodigosClase');
-    return view('pages.registro', compact('categorias'));
+
+    $estados[] =[
+         ["clave" => "AGS", "nombre" => "AGUASCALIENTES"] ,
+         ["clave" => "BC",  "nombre" => "BAJA CALIFORNIA"] ,
+         ["clave" => "BCS", "nombre" => "BAJA CALIFORNIA SUR"] ,
+         ["clave" => "CHI", "nombre" => "CHIHUAHUA"] ,
+         ["clave" => "CHS", "nombre" => "CHIAPAS"] ,
+         ["clave" => "CMP", "nombre" => "CAMPECHE"] ,
+         ["clave" => "CMX", "nombre" => "CIUDAD DE MEXICO"] ,
+         ["clave" => "COA", "nombre" => "COAHUILA"] ,
+         ["clave" => "COL", "nombre" => "COLIMA"] ,
+         ["clave" => "DGO", "nombre" => "DURANGO"] ,
+         ["clave" => "GRO", "nombre" => "GUERRERO"] ,
+         ["clave" => "GTO", "nombre" => "GUANAJUATO"] ,
+         ["clave" => "HGO", "nombre" => "HIDALGO"] ,
+         ["clave" => "JAL", "nombre" => "JALISCO"] ,
+         ["clave" => "MCH", "nombre" => "MICHOACAN"] ,
+         ["clave" => "MEX", "nombre" => "ESTADO DE MEXICO"] ,
+         ["clave" => "MOR", "nombre" => "MORELOS"] ,
+         ["clave" => "NAY", "nombre" => "NAYARIT"] ,
+         ["clave" => "NL",  "nombre" => "NUEVO LEON"] ,
+         ["clave" => "OAX", "nombre" => "OAXACA"] ,
+         ["clave" => "PUE", "nombre" => "PUEBLA"] ,
+         ["clave" => "QR",  "nombre" => "QUINTANA ROO"] ,
+         ["clave" => "QRO", "nombre" => "QUERETARO"] ,
+         ["clave" => "SIN", "nombre" => "SINALOA"] ,
+         ["clave" => "SLP", "nombre" => "SAN LUIS POTOSI"] ,
+         ["clave" => "SON", "nombre" => "SONORA"] ,
+         ["clave" => "TAB", "nombre" => "TABASCO"] ,
+         ["clave" => "TLX", "nombre" => "TLAXCALA"] ,
+         ["clave" => "TMS", "nombre" => "TAMAULIPAS"] ,
+         ["clave" => "VER", "nombre" => "VERACRUZ"] ,
+         ["clave" => "YUC", "nombre" => "YUCATAN"] ,
+         ["clave" => "ZAC", "nombre" => "ZACATECAS"] ,
+    ];
+
+    return view('pages.registro', compact('categorias', 'estados'));
 });
+
+Route::post('/registro/guardar', function (Request $request) {
+
+    /*
+    firstname
+    lastname
+    email
+    telephone
+
+
+    razon_social
+    RFC
+    formaPago
+    usoCFDI
+
+
+    calle
+    numero
+    numero_int
+    colonia
+    ciudad
+    country_id
+    postcode
+    password
+    */
+
+
+    $r = DB::select("WebClienteInsertarModificar'<Cliente>
+    <Info>
+        <IdCliente>2</IdCliente>
+        <IdUsuario>1</IdUsuario>
+        <Nombre>".$request->get('firstname')."</Nombre>
+        <Apellido>".$request->get('lastname')."</Apellido>
+        <CorreoFactura>".$request->get('email')."</CorreoFactura>
+        <Telefono>".$request->get('telephone')." </Telefono>
+    </Info>
+    <Facturacion>
+            <razonSocial>".$request->get('razon_social')."</razonSocial>
+            <Rfc>".$request->get('RFC')."</Rfc>
+            <IdFormaPago>28</IdFormaPago>
+            <IUsoCfdi>G01</IUsoCfdi>
+    </Facturacion>
+    <Direccion>
+            <Calle>".$request->get('calle')." </Calle>
+            <NoExt>".$request->get('numero')." </NoExt>
+            <NoInt>".$request->get('numero_int')." </NoInt>
+            <Colonia>".$request->get('colonia')." </Colonia>
+            <IdCiudad>1</IdCiudad>
+            <IdEstado>2 </IdEstado>
+            <Cp>".$request->get('postcode')."</Cp>
+    </Direccion>
+</Cliente>'");
+
+return $r;
+
+    return $request->all();
+})->name('guardarDatos');
 
 
 Route::get('/prueba', function () {
+
+
 
     $r = DB::select('ObtenerListaProductos');
 
