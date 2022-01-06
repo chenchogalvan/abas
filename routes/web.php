@@ -20,14 +20,88 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
 
-    $oferta = DB::select('WebCodigosOferta');
+    // $oferta = DB::select('WebCodigosOferta');
     $categorias = DB::select('WebCodigosClase');
-    $pd = DB::select('WebCodigosDestacados');
+    // $pd = DB::select('WebCodigosDestacados');
 
     // return $pd;
 
-    // return $categorias;
-    return view('pages.home', compact('oferta', 'categorias'));
+    return view('pages.home', compact('categorias'));
+});
+
+
+Route::get('/test', function () {
+
+    // $user = 'AlfredoPrueba2';
+    // $pass = '12345678';
+
+    $user = 'Alfredoprueba3';
+    $pass = '12345678';
+
+    $id = "1";
+    $asunto = 'No puedo realizar un pago 2';
+    $mensaje = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+
+
+    // $WebCodigosObtener = DB::select('WebCodigosObtener');
+    // $WebCodigosObtenerInd = DB::select('WebCodigosObtenerInd "2414nb"');
+    // $WebCodigosOferta = DB::select('WebCodigosOferta'); --permiso
+    // $WebCodigosObtenerRecientes = DB::select('WebCodigosObtenerRecientes');
+    // $WebCodigosRelacionados = DB::select('WebCodigosRelacionados "2414nb"'); //permisos
+    // $WebCodigosClase = DB::select('WebCodigosClase');
+    // $WebCodigosIdClase = DB::select('WebCodigosIdClase 9');
+    // $WebCodigosDestacados = DB::select('WebCodigosDestacados '); --permisos
+    // $WebCodigosOferta = DB::select('WebCodigosOferta'); --permisos
+
+    $WebUsuariosLogin = DB::select('WebUsuariosLogin "'.$user.'", "'.$pass.'"');
+
+    //Primero se insera, luego se usa el registro y listo
+//     $WebUsuariosInsertar = DB::select('WebUsuariosInsertar "'.$user.'", "'.$pass.'"');
+
+//    $WebClienteInsertarModificar = DB::select("WebClienteInsertarModificar '<Cliente>
+//    <Info>
+//        <IdCliente></IdCliente>
+//        <IdUsuario>10</IdUsuario>
+//        <Nombre>ok</Nombre>
+//        <Apellido>ok2</Apellido>
+//        <CorreoFactura>@email </CorreoFactura>
+//        <Telefono>47734535 </Telefono>
+//    </Info>
+//    <Facturacion>
+//        <RazonSocial>razon</RazonSocial>
+//        <Rfc>ascccacascc</Rfc>
+//        <IdFormaPago>28</IdFormaPago>
+//        <IUsoCfdi>G01</IUsoCfdi>
+//    </Facturacion>
+
+// </Cliente>'");
+
+    // $WebPedidoDetalleObtener = DB::select('WebPedidoDetalleObtener "1"');
+
+    // $WebPedidoDetalleObtenerInd = DB::select('WebPedidoDetalleObtenerInd "5"');
+
+    // $WebClienteObtener = DB::select('WebClienteObtener "1"');
+
+    // $WebTicketInsertar = DB::select('WebTicketInsertar "'.$id.'","'.$asunto.'","'.$mensaje.'"');
+
+        //$WebTicketObtener = DB::select('WebTicketObtener "1"');
+
+
+        // $WebCodigos = DB::select('WebCodigosIdMarca "153"');
+    // $WebClienteObtener = DB::select('WebClienteObtener "2"');
+
+    $WebDireccionAliasObtener = DB::select('WebDireccionAliasObtener "1"');
+
+    $WebDireccionObtenerAltas = DB::select('WebDireccionObtenerAltas "1", "2"');
+
+
+
+
+
+    // return $WebUsuariosInsertar[0]->resp;
+
+    return $WebUsuariosLogin;
+
 });
 
 Route::get('/email', function () {
@@ -68,7 +142,11 @@ Route::get('/categoria/{IdClase}', function ($IdClase){
     $up = DB::select('WebCodigosObtenerRecientes');
     $categorias = DB::select('WebCodigosClase');
 
-    return view('pages.categoria', compact('c', 'up', 'categorias'));
+    $catArray = $results;
+
+
+
+    return view('pages.categoria', compact('c', 'up', 'categorias', 'catArray'));
 })->name('categoria');
 
 Route::get('/producto/{Codigo}', function ($Codigo) {

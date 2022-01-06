@@ -35,19 +35,19 @@
                         <!-- Begin extraslider-inner -->
                         <div class="yt-content-slider extraslider-inner">
                             <div class="item ">
-                                @for ($i = 0; $i < 3; $i++)
+                                @foreach ($up as $up)
                                 <div class="product-layout item-inner style1 ">
                                     <div class="item-image">
                                         <div class="item-img-info">
-                                            <a href="#" target="_self" title="Mandouille short ">
-                                                <img src="http://www.abasleal.com/imagenes_productos/KP0800.jpg" alt="Mandouille short">
+                                            <a href="{{ route('producto', $up->Codigo) }}" target="_self" title="{{ $up->Descripcion }}">
+                                                <img src="{{ $up->Imagen }}" onerror="this.onerror=null;this.src='/image/imagen.jpg';" alt="{{ $up->Descripcion }}">
                                                 </a>
                                         </div>
 
                                     </div>
                                     <div class="item-info">
                                         <div class="item-title">
-                                            <a href="#" target="_self" title="Mandouille short">Mandouille short </a>
+                                            <a href="{{ route('producto', $up->Codigo) }}" target="_self" title="{{ $up->Descripcion }}">{{ $up->Descripcion }}</a>
                                         </div>
                                         {{-- <div class="rating">
                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -57,7 +57,7 @@
                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                         </div> --}}
                                         <div class="content_price price">
-                                            <span class="price-new product-price">$55.00 </span>&nbsp;&nbsp;
+                                            <span class="price-new product-price">$@convert($up->Precio) </span>&nbsp;&nbsp;
 
 
                                         </div>
@@ -65,7 +65,7 @@
                                     <!-- End item-info -->
                                     <!-- End item-wrap-inner -->
                                 </div>
-                                @endfor
+                                @endforeach
 
                                 <!-- End item-wrap -->
 
@@ -271,6 +271,15 @@
         view = 'grid';
     }
     if(view) display(view);
-//--></script>
+//-->
+
+
+
+
+
+</script>
+
+
+
 @endpush
 

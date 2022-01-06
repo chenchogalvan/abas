@@ -300,7 +300,7 @@
                 <div class="modcontent">
                     <div id="so_deal_61" class="so-deal">
                         <div class="products-list yt-content-slider extraslider-inner" data-rtl="yes" data-pagination="no" data-arrows="yes" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column00="1" data-items_column0="1" data-items_column1="1" data-items_column2="1" data-items_column3="1" data-items_column4="1" data-lazyload="yes" data-loop="no" data-buttonpage="top">
-                            @forelse ($oferta as $o)
+                            {{-- @forelse ($oferta as $o) --}}
 
 
                             {{-- <div class="item product-layout">
@@ -339,9 +339,9 @@
                                 </div>
                             </div> --}}
 
-                            @empty
+                            {{-- @empty
 
-                            @endforelse
+                            @endforelse --}}
                             {{-- <div class="item product-layout">
                                 <div class="product-thumb transition product-item-container">
                                     <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12 col-left">

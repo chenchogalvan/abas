@@ -40,7 +40,7 @@
                                     <div class="item-image">
                                         <div class="item-img-info">
                                             <a href="{{ route('producto', $up->Codigo) }}" target="_self" title="{{ $up->Descripcion }}">
-                                                <img src="{{ $up->Imagen }}" alt="{{ $up->Descripcion }}">
+                                                <img src="{{ $up->Imagen }}" onerror="this.onerror=null;this.src='/image/imagen.jpg';" alt="{{ $up->Descripcion }}">
                                                 </a>
                                         </div>
 
@@ -155,7 +155,9 @@
                 <!--changed listings-->
                 <div class="products-list row nopadding-xs so-filter-gird">
 
+
                     @foreach ($c as $r)
+
 
 
                     <div class="product-layout col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -164,8 +166,8 @@
                                 <div class="product-image-container second_img">
                                     <a href="/producto/{{$r->Codigo}}" target="_self" title="{{$r->Descripcion}}">
 
-                                        <img src="{{ $r->Imagen }}" class="img-1 img-responsive" alt="{{$r->Descripcion}}">
-                                        <img src="{{ $r->Imagen }}" class="img-2 img-responsive" alt="{{$r->Descripcion}}">
+                                        <img src="{{ $r->Imagen }}" onerror="this.onerror=null;this.src='/image/imagen.jpg';"class="img-1 img-responsive" alt="{{$r->Descripcion}}">
+                                        <img src="{{ $r->Imagen }}" onerror="this.onerror=null;this.src='/image/imagen.jpg';"class="img-2 img-responsive" alt="{{$r->Descripcion}}">
                                     </a>
                                 </div>
                                 {{-- <span class="label-product label-new">New</span> --}}
@@ -179,12 +181,12 @@
                                 <div class="button-group cartinfo--static">
 
                                     {{-- <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i></button> --}}
-                                    <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('60 ');">
+                                    <button type="button" class="addToCart" title="Add to cart">
                                         <span>Comprar </span>
                                     </button>
                                     {{-- <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i></button> --}}
                                 </div>
-                                <h4><a href="/producto/{{$r->Codigo}}" title="{{ $r->Descripcion }}" target="_self">{{ $r->Descripcion }}</a></h4>
+                                <h4><a href="/producto/{{$r->Codigo}}"  title="{{ $r->Descripcion }}" target="_self">{{ $r->Descripcion }}</a></h4>
                                 {{-- <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                     <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                     <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
@@ -198,7 +200,7 @@
                                     <p>{{$r->Descripcion}}</p>
                                 </div>
                                 <div class="list-block">
-                                    <button class="addToCart btn-button" type="button" title="Add to Cart" onclick="cart.add('101', '1');"><i class="fa fa-shopping-basket"></i> Agregar al carrito
+                                    <button class="addToCart btn-button" type="button" title="Add to Cart" ><i class="fa fa-shopping-basket"></i> Agregar al carrito
                                     </button>
                                     {{-- <button class="wishlist btn-button" type="button" title="Add to Wish List" onclick="wishlist.add('101');"><i class="fa fa-heart"></i>
                                     </button>
@@ -230,6 +232,11 @@
             </div>
 
         </div>
+
+        <input type="hidden" id="datos" name="datos" value='{!! json_encode($catArray) !!}'>
+
+
+
 
 
         <!--Middle Part End-->
@@ -273,6 +280,10 @@
         view = 'grid';
     }
     if(view) display(view);
+
 //--></script>
+
+
+
 @endpush
 

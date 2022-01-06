@@ -207,7 +207,7 @@
                                         </div>
                                     </div>
                                     <div class="cart">
-                                        <input type="button" data-toggle="tooltip" title="" value="Agregar al carrito" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Agregar al carrito">
+                                        <input type="button" data-toggle="tooltip" title="" value="Agregar al carrito" data-loading-text="Loading..." id="button-cart" class="addToCart btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Agregar al carrito">
                                     </div>
                                     {{-- <div class="add-to-links wish_comp">
                                         <ul class="blank list-inline">
@@ -533,3 +533,6 @@
     </div>
     <!-- //Main Container -->
 @endsection
+
+
+
